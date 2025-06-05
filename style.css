@@ -1,0 +1,454 @@
+@import url("https://fonts.cdnfonts.com/css/mona-sans");
+*{ box-sizing: border-box; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; scroll-behavior: smooth;}
+html, body { overflow: hidden; }
+body {
+    min-height: 100vh;
+    display: flex; flex-direction: row; flex-wrap: wrap;
+    justify-content: center; align-items: center; margin: 0;
+    background: #000; /* changed from #343434 */
+    background: linear-gradient(
+        180deg,
+        #000 0%,   /* changed from #343434 */
+        #000 100%  /* changed from #252525 */
+    );
+    font-family: "Mona-Sans", sans-serif;
+	font-family: "Mona Sans", sans-serif;
+}
+/* ///////////////////// */
+
+.card {
+    position: absolute;
+    left: 0; right: 0;
+    top: 20%; 
+    margin: auto;
+    width: 320px; 
+    min-height: 500px;
+    border-radius: 16px;
+    background: rgba(25, 25, 25, 0.35); /* more transparent */
+    background: linear-gradient(
+        180deg,
+        rgba(41, 41, 41, 0.32) 0%,
+        rgba(25, 25, 25, 0.48) 50%
+    );
+    backdrop-filter: blur(18px); /* strong blur for glass effect */
+    -webkit-backdrop-filter: blur(18px);
+    border: 1.5px solid rgba(255,255,255,0.10); /* subtle border */
+    box-shadow: 
+        0 8px 32px 0 rgba(31, 38, 135, 0.18),
+        0 2px 2px 0 #e7c4a088 inset,
+        0 -2px 2px 0 #0003 inset;
+    
+    color: #ccc;
+    text-shadow: 1px 1px 3px #333a;
+    padding: 24px;
+    display: flex; 
+    flex-direction: column; 
+    align-items: center;
+    
+    .profile {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 20px;
+        width: 100%;
+        
+        .profile-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid rgba(255, 255, 255, 0.2);
+            margin-bottom: 10px;
+        }
+        
+        h1 {
+            font-size: 1.4em;
+            margin: 10px 0 0;
+            text-align: center;
+            transform-origin: center;
+            text-shadow:
+                0 0 8px #fff,
+                0 0 16px #fff6,
+                0 0 32px #ffe06688,
+                1px 1px 3px #333a;
+        }
+        
+        p {
+            font-size: 0.9em;
+            color: #aaa;
+            margin: 5px 0;
+            text-align: center;
+            font-weight: 500;
+        }
+    }
+    
+    .links {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        gap: 12px;
+        
+        .link-item {
+            display: flex;
+            align-items: center;
+            padding: 15px 16px;
+            border-radius: 100px;
+            background: #fff2;
+            color: #ccc;
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 
+                0 0 0 1px #fff3, 
+                inset 120px 0 100px -100px #000c,
+                0 0 15px rgba(255, 255, 255, 0.05),
+                0 2px 8px rgba(0, 0, 0, 0.4);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            
+            /* Subtle inner glow */
+            &::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: linear-gradient(135deg, 
+                    rgba(255, 255, 255, 0.1) 0%,
+                    transparent 50%,
+                    rgba(255, 255, 255, 0.05) 100%);
+                border-radius: inherit;
+                opacity: 0;
+                transition: opacity 0.4s ease;
+            }
+            
+            /* Animated border glow */
+            &::after {
+                content: '';
+                position: absolute;
+                top: -2px;
+                left: -2px;
+                right: -2px;
+                bottom: -2px;
+                background: linear-gradient(45deg, 
+                    rgba(255, 255, 255, 0.3),
+                    rgba(255, 255, 255, 0.1),
+                    rgba(255, 255, 255, 0.3));
+                border-radius: inherit;
+                opacity: 0;
+                filter: blur(8px);
+                transition: opacity 0.4s ease;
+                z-index: -1;
+            }
+            
+            i {
+                font-size: 1.2em;
+                margin-right: 15px;
+                width: 24px;
+                text-align: center;
+                position: relative;
+                z-index: 2;
+                transition: transform 0.3s ease;
+            }
+            
+            span {
+                font-weight: 600;
+                position: relative;
+                z-index: 2;
+                transition: transform 0.3s ease;
+            }
+            
+            &:hover {
+                transform: translateY(-3px) scale(1.02);
+                box-shadow: 
+                    0 0 0 1px rgba(255, 255, 255, 0.4), 
+                    inset 200px 0px 100px -100px #000a,
+                    0 0 30px rgba(255, 255, 255, 0.15),
+                    0 8px 25px rgba(0, 0, 0, 0.4),
+                    0 0 50px rgba(255, 255, 255, 0.1);
+                color: #fff;
+                
+                &::before {
+                    opacity: 1;
+                }
+                
+                &::after {
+                    opacity: 1;
+                }
+                
+                i, span {
+                    transform: translateX(2px);
+                }
+            }
+            
+            &:active {
+                transform: translateY(-1px) scale(1.01);
+                transition: all 0.1s ease;
+            }
+        }
+    }
+}
+
+.accents {
+    user-select: none;
+    pointer-events: none;
+    position: absolute;
+    left: 0; right: 0;
+    top: 20%;
+    .acc-card{
+        width: 330px; height: 500px;
+        background: #eee1;
+        opacity: 0.8;
+        z-index: -1;
+        position: absolute;
+        left: 0; right: 0;
+        top: 20%;
+        margin: auto;
+        border-radius: 16px;
+        box-shadow: inset 0 2px 2px 0 #e0c9b266,
+        inset 0 -2px 2px 0 #0004;
+        backdrop-filter: blur(4px);
+        transition: all 0.1s linear;
+        transform-origin: 20% 80%;
+
+        &:nth-child(1){
+            animation: wobble 18s ease-in-out infinite;
+        }
+        &:nth-child(2){
+            animation: wobble 22s ease-in-out -6s infinite reverse;
+        }
+        &:nth-child(3){
+            animation: wobble 26s ease-in-out -18s infinite;
+        }
+    }
+    .light {
+        --bgref: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg id='Layer_1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 487 487'%3E%3Ccircle cx='243' cy='243.5' r='233' style='fill:none; opacity:.1; stroke:%23aaa; stroke-linecap:round; stroke-miterlimit:10; stroke-width:18px;'/%3E%3Ccircle cx='243.5' cy='243.5' r='243' style='fill:none; stroke:%23111; stroke-linecap:round; stroke-miterlimit:10;'/%3E%3Ccircle cx='243' cy='243.5' r='222' style='fill:none; stroke:%23111; stroke-linecap:round; stroke-miterlimit:10;'/%3E%3Cpath d='m10,243.5C10,114.82,114.32,10.5,243,10.5' style='fill:none; stroke:%23ddd; stroke-linecap:round; stroke-miterlimit:10; stroke-width:18px;'/%3E%3C/svg%3E");
+        position: absolute;
+        left: 0; right: calc(0% + 300px); 
+        top: 264px;
+        margin: auto;
+        width: 164px; height: 164px;
+        z-index: -2;
+        background-image: var(--bgref);
+        animation: rotate360 22s linear infinite;
+    
+        &::before, &::after {
+            content: ''; display: block;
+            width: 100%; height: 100%;
+            position: absolute;
+            left: 0; right: 0;
+            top: 0; bottom: 0;
+            margin: auto;
+            background-image: var(--bgref);
+            filter: blur(3px);
+            scale: 1.01;
+        }
+        &::after {
+            filter: blur(8px);
+        }
+        &.sm {
+            width: 100px; height: 100px;
+            left:  calc(0% + 300px); right: 0;
+            top: 142px; bottom: 0;
+            animation: rotate360 18s linear -10s infinite;
+        }
+    }
+    .top-light {
+        position: absolute;
+        left: 0; right: 0; 
+        top: -42px;
+        margin: auto;
+        width: 284px;
+        height: 6px;
+        border-radius: 10px;
+        background: #fffef9;
+        box-shadow: 
+        0 0px 1px 1px #ffc78e,
+        0 1px 2px 1px #ff942977,
+        0 2px 6px 1px #e98b2d77,
+        0 4px 12px 0px #ff9e3d99,
+        0 12px 20px 12px #ff800044;
+    }
+}
+
+@keyframes rotate360 { to { rotate: 360deg;} }
+@keyframes wobble {
+    0% {
+        transform: translateX(10px) translateY(20px) rotate(-3deg) scale(1);
+    }
+    20% {
+        transform: translateX(-44px) translateY(-8px) rotate(6deg) scale(1.02);
+    }
+    60% {
+        transform: translateX(32px) translateY(18px) rotate(-8deg) scale(1);
+    }
+    80% {
+        transform: translateX(-42px) translateY(-22px) rotate(12deg) scale(0.94);
+    }
+    100% {
+        transform: translateX(10px) translateY(20px) rotate(-3deg) scale(1);
+    }
+}
+@keyframes logo-grow {
+    0% {
+        transform: scale(0.7);
+        opacity: 0.2;
+    }
+    60% {
+        transform: scale(1.15);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Enhanced Mobile Responsiveness */
+@media screen and (max-width: 480px) {
+    .card {
+        width: 90vw;
+        max-width: 350px;
+        padding: 20px;
+        top: 18%; /* was 10%, move card further down */
+        
+        .profile {
+            margin-bottom: 16px;
+            
+            .profile-img {
+                width: 100px;
+                height: 100px;
+            }
+            
+            h1 {
+                font-size: 1.3em;
+            }
+            
+            p {
+                font-size: 0.85em;
+            }
+        }
+        
+        .links {
+            gap: 10px;
+            
+            .link-item {
+                padding: 12px 14px;
+                
+                i {
+                    font-size: 1.1em;
+                    margin-right: 12px;
+                    width: 20px;
+                }
+                
+                span {
+                    font-size: 0.95em;
+                }
+            }
+        }
+    }
+    
+    .accents {
+        .acc-card {
+            width: 90vw;
+            max-width: 360px;
+        }
+        
+        .top-light {
+            width: 80vw;
+            max-width: 250px;
+        }
+        
+        .light {
+            width: 120px;
+            height: 120px;
+            top: 320px; /* was 264px, move light lower */
+            
+            &.sm {
+                width: 80px;
+                height: 80px;
+                top: 210px; /* was 142px, move small light lower */
+            }
+        }
+    }
+}
+
+@media screen and (max-height: 700px) {
+    .card {
+        top: 5%;
+        transform: scale(0.9);
+    }
+    
+    .accents .acc-card {
+        transform: scale(0.9);
+    }
+}
+
+@media screen and (max-height: 600px) {
+    .card {
+        transform: scale(0.8);
+        top: 15%;
+    } 
+    
+    .accents {
+        top: 15%;
+        
+        .acc-card {
+            height: 400px;
+            transform: scale(0.8);
+        }
+        
+        .light { 
+            top: 200px;
+            
+            &.sm { 
+                top: 100px; 
+            }
+        }
+    }
+}
+
+@media screen and (max-height: 500px) {
+    .card {
+        transform: scale(0.7);
+        top: 5%;
+        
+        .links .link-item {
+            padding: 10px 12px;
+            
+            i {
+                font-size: 1em;
+                margin-right: 10px;
+            }
+            
+            span {
+                font-size: 0.9em;
+            }
+        }
+    }
+    
+    .accents {
+        top: 5%;
+        
+        .acc-card {
+            height: 350px;
+            transform: scale(0.7);
+        }
+    }
+}
+
+/* Landscape mobile orientation */
+@media screen and (max-height: 500px) and (orientation: landscape) {
+    .card {
+        transform: scale(0.6);
+        top: 2%;
+    }
+    
+    .accents {
+        top: 2%;
+        
+        .acc-card {
+            transform: scale(0.6);
+        }
+    }
+}
